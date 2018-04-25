@@ -6,6 +6,9 @@ import (
 	"github.com/hajimehoshi/ebiten/ebitenutil"
 )
 
+// color : 0 = white, 1 = black
+// rank : 0 = bonde, 1 = häst, 2 = löpare, 3 = torn, 4 = dam, 5 = kung
+
 type Piece struct{
 	pieceIcon *ebiten.Image
 	color int
