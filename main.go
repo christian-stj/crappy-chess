@@ -12,7 +12,11 @@ var previousColor color.Color
 
 
 func update(screen *ebiten.Image) error {
-	selectTile()
+	if selectedTile == nil {
+		selectTile()
+	} else {
+		// TODO moveTile()
+	}
 	UpdateBoard(screen, board)
 	StartingPiecePos(board)
 
