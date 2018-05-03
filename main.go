@@ -4,25 +4,45 @@ import (
 "github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/inpututil"
 	"fmt"
+	"image/color"
 )
 
 var board *[8][8]Tile
+var selectedTile *Tile
+var previousColor color.Color
 
 
 func update(screen *ebiten.Image) error {
 
 	UpdateBoard(screen, board)
 	StartingPiecePos(board)
-	click()
+	if flag, x, y:=click(); flag == true {
+		for a, row := range(board) {
+			for b,_ := range(row) {
+				tile:=&board[a][b]
+				if (tile.xleft <= x && x < tile.xright) && (tile.ytop <= y && y < tile.ybot) && tile.piece!=(Piece{}) {
+					if selectedTile != nil {
+						selectedTile.color=previousColor
+					}
+					previousColor=tile.color
+					tile.color=color.RGBA{250, 100, 50, 200}
+					selectedTile=tile
+				}
+			}
+		}
+	}
+	fmt.Println(selectedTile)
 	return nil
 }
 
-func click() bool {
+func click() (bool, int , int) {
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 		x, y := ebiten.CursorPosition()
 		fmt.Println(x,y)
+		return true, x, y
+	} else {
+		return false, 0, 0
 	}
-	return false
 }
 
 func main() {
