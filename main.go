@@ -12,9 +12,14 @@ var previousColor color.Color
 
 
 func update(screen *ebiten.Image) error {
-
+	selectTile()
 	UpdateBoard(screen, board)
 	StartingPiecePos(board)
+
+	return nil
+}
+
+func selectTile() {
 	if flag, x, y:=click(); flag == true {
 		for a, row := range(board) {
 			for b,_ := range(row) {
@@ -30,7 +35,6 @@ func update(screen *ebiten.Image) error {
 			}
 		}
 	}
-	return nil
 }
 
 func click() (bool, int , int) {
