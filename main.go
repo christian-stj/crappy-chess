@@ -9,6 +9,7 @@ import (
 var board *[8][8]Tile
 var selectedTile *Tile
 var previousColor color.Color
+var playersTurn int = 0
 
 
 func update(screen *ebiten.Image) error {

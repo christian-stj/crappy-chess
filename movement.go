@@ -7,7 +7,7 @@ func selectTile() {
 		for a, row := range(board) {
 			for b,_ := range(row) {
 				tile:=&board[a][b]
-				if (tile.xleft <= x && x < tile.xright) && (tile.ytop <= y && y < tile.ybot) && tile.piece!=(Piece{}) {
+				if (tile.xleft <= x && x < tile.xright) && (tile.ytop <= y && y < tile.ybot) && tile.piece!=(Piece{}) && tile.piece.color==playersTurn {
 					if selectedTile != nil {
 						selectedTile.color=previousColor
 					}
@@ -34,10 +34,20 @@ func moveTile(){
 						selectedTile.piece = Piece{}
 						selectedTile.color = previousColor
 						selectedTile = nil
+						changeTurn()
+
 					}
 				}
 			}
 		}
 	}
 
+}
+
+func changeTurn(){
+	if playersTurn == 0{
+		playersTurn = 1
+	} else {
+		playersTurn = 0
+	}
 }
