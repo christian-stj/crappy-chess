@@ -3,7 +3,6 @@ package main
 import (
 "github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/inpututil"
-	"fmt"
 	"image/color"
 )
 
