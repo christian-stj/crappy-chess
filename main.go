@@ -31,14 +31,12 @@ func update(screen *ebiten.Image) error {
 			}
 		}
 	}
-	fmt.Println(selectedTile)
 	return nil
 }
 
 func click() (bool, int , int) {
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 		x, y := ebiten.CursorPosition()
-		fmt.Println(x,y)
 		return true, x, y
 	} else {
 		return false, 0, 0
