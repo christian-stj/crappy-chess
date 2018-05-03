@@ -37,5 +37,4 @@ func main() {
 	board = CreateBoard()
 	StartingPiecePos(board)
 	ebiten.Run(update, 260, 260, 2, "Chess")
-
 }

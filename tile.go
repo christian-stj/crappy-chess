@@ -1,12 +1,16 @@
 package main
 
-import "image/color"
+import (
+	"image/color"
+)
 
 type Tile struct {
 	xleft int
 	xright int
 	ytop int
 	ybot int
+	a int
+	b int
 	color color.Color
 	piece Piece
 }

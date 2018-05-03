@@ -30,12 +30,15 @@ func moveTile(){
 						selectedTile.color = previousColor
 						selectedTile = nil
 					} else {
-						tile.piece = selectedTile.piece
-						selectedTile.piece = Piece{}
-						selectedTile.color = previousColor
-						selectedTile = nil
-						changeTurn()
+						if canMove(tile) {
+							tile.piece = selectedTile.piece
+							selectedTile.piece = Piece{}
+							selectedTile.color = previousColor
+							selectedTile = nil
+							changeTurn()
+						} else {
 
+						}
 					}
 				}
 			}
@@ -50,4 +53,23 @@ func changeTurn(){
 	} else {
 		playersTurn = 0
 	}
+}
+
+func canMove(tile *Tile) bool{
+	var boo bool
+	switch selectedTile.piece.rank {
+	case 0:
+	case 1:
+		boo = movePeasant(tile)
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+
+	}
+	return boo
+}
+
+func movePeasant(tile *Tile) bool {
+	return false
 }
