@@ -59,17 +59,50 @@ func canMove(tile *Tile) bool{
 	var boo bool
 	switch selectedTile.piece.rank {
 	case 0:
+		boo = movePawn(tile)
 	case 1:
-		boo = movePeasant(tile)
+		boo = moveKnight(tile)
 	case 2:
+		boo = moveBishop(tile)
 	case 3:
+		boo = moveRook(tile)
 	case 4:
+		boo = moveQueen(tile)
 	case 5:
+		boo = moveKing(tile)
 
 	}
 	return boo
 }
 
-func movePeasant(tile *Tile) bool {
+func movePawn(tile *Tile) bool {
+	xold, yold:=selectedTile.b, selectedTile.a
+	xnew, ynew:=tile.b, tile.a
+	c := selectedTile.piece.color
+	if c==0 && xnew==xold && ynew==yold-1 && tile.piece==(Piece{}) {
+		return true
+	}else if c==1 && xnew==xold && ynew==yold+1 && tile.piece==(Piece{}) {
+		return true
+	}
+	return false
+}
+
+func moveKnight(tile *Tile) bool {
+	return false
+}
+
+func moveBishop(tile *Tile) bool {
+	return false
+}
+
+func moveRook(tile *Tile) bool {
+	return false
+}
+
+func moveQueen(tile *Tile) bool {
+	return false
+}
+
+func moveKing(tile *Tile) bool {
 	return false
 }

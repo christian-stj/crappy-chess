@@ -16,6 +16,8 @@ func CreateBoard()(*[8][8]Tile){
 			ytop := 10 + i + i*(a-1)
 			ybot := ytop + i
 			tile := CreateTile(xleft,xright,ytop,ybot)
+			tile.a=a
+			tile.b=b
 			if b%2 == 0 && a%2 == 0 || b%2 != 0 && a%2 != 0 {
 				tile.color = color.White
 			} else {
