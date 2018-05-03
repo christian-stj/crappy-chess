@@ -3,6 +3,7 @@ package main
 import (
 "github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/inpututil"
+	"fmt"
 )
 
 var board *[8][8]Tile
@@ -18,6 +19,8 @@ func update(screen *ebiten.Image) error {
 
 func click() bool {
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
+		x, y := ebiten.CursorPosition()
+		fmt.Println(x,y)
 	}
 	return false
 }
