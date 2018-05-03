@@ -26,10 +26,15 @@ func moveTile(){
 			for b,_ := range(row) {
 				tile:=&board[a][b]
 				if (tile.xleft <= x && x < tile.xright) && (tile.ytop <= y && y < tile.ybot) {
-					tile.piece=selectedTile.piece
-					selectedTile.piece=Piece{}
-					selectedTile.color=previousColor
-					selectedTile=nil
+					if selectedTile == tile {
+						selectedTile.color = previousColor
+						selectedTile = nil
+					} else {
+						tile.piece = selectedTile.piece
+						selectedTile.piece = Piece{}
+						selectedTile.color = previousColor
+						selectedTile = nil
+					}
 				}
 			}
 		}
