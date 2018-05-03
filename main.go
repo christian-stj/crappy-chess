@@ -15,31 +15,13 @@ func update(screen *ebiten.Image) error {
 	if selectedTile == nil {
 		selectTile()
 	} else {
-		// TODO moveTile()
+		moveTile()
 	}
 	UpdateBoard(screen, board)
-	StartingPiecePos(board)
 
 	return nil
 }
 
-func selectTile() {
-	if flag, x, y:=click(); flag == true {
-		for a, row := range(board) {
-			for b,_ := range(row) {
-				tile:=&board[a][b]
-				if (tile.xleft <= x && x < tile.xright) && (tile.ytop <= y && y < tile.ybot) && tile.piece!=(Piece{}) {
-					if selectedTile != nil {
-						selectedTile.color=previousColor
-					}
-					previousColor=tile.color
-					tile.color=color.RGBA{250, 100, 50, 200}
-					selectedTile=tile
-				}
-			}
-		}
-	}
-}
 
 func click() (bool, int , int) {
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
@@ -52,6 +34,7 @@ func click() (bool, int , int) {
 
 func main() {
 	board = CreateBoard()
+	StartingPiecePos(board)
 	ebiten.Run(update, 260, 260, 2, "Chess")
 
 }
