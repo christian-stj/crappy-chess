@@ -1,7 +1,7 @@
 package main
 
 import (
-"github.com/hajimehoshi/ebiten"
+	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/inpututil"
 	"image/color"
 )
@@ -10,7 +10,6 @@ var board *[8][8]Tile
 var selectedTile *Tile
 var previousColor color.Color
 var playersTurn int = 0
-
 
 func update(screen *ebiten.Image) error {
 	if selectedTile == nil {
@@ -23,8 +22,7 @@ func update(screen *ebiten.Image) error {
 	return nil
 }
 
-
-func click() (bool, int , int) {
+func click() (bool, int, int) {
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 		x, y := ebiten.CursorPosition()
 		return true, x, y

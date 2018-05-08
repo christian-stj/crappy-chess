@@ -5,17 +5,17 @@ import (
 )
 
 type Tile struct {
-	xleft int
+	xleft  int
 	xright int
-	ytop int
-	ybot int
-	a int
-	b int
-	color color.Color
-	piece Piece
+	ytop   int
+	ybot   int
+	a      int
+	b      int
+	color  color.Color
+	piece  Piece
 }
 
-func CreateTile(xleft int, xright int, ytop int, ybot int)(t Tile){
+func CreateTile(xleft int, xright int, ytop int, ybot int) (t Tile) {
 	tile := Tile{}
 	tile.xleft = xleft
 	tile.xright = xright
