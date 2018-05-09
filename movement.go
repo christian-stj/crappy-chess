@@ -149,6 +149,43 @@ func moveKnight(tileFrom *Tile, tileTo *Tile) bool {
 }
 
 func moveBishop(tileFrom *Tile, tileTo *Tile) bool {
+	xold, yold := tileFrom.b, tileFrom.a
+	xnew, ynew := tileTo.b, tileTo.a
+	if tileTo.piece.color == playersTurn && tileTo.piece != (Piece{}) {
+		return false
+	}
+	for i:=1; i < 8; i++ {
+		switch {
+		case xnew == xold + i &&  ynew == yold + i:
+			for j := 1; j < i; j++ {
+				if board[yold+j][xold+j].piece != (Piece{}) {
+					return false
+				}
+			}
+			return true
+		case xnew == xold - i && ynew == yold - i:
+			for j := 1; j < i; j++ {
+				if board[yold-j][xold-j].piece != (Piece{}) {
+					return false
+				}
+			}
+			return true
+		case xnew == xold + i && ynew == yold - i:
+			for j := 1; j < i; j++ {
+				if board[yold-j][xold+j].piece != (Piece{}) {
+					return false
+				}
+			}
+			return true
+		case xnew == xold - i && ynew == yold + i:
+			for j := 1; j < i; j++ {
+				if board[yold+j][xold-j].piece != (Piece{}) {
+					return false
+				}
+			}
+			return true
+		}
+	}
 	return false
 }
 
