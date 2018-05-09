@@ -1,7 +1,13 @@
 package main
 
-import "image/color"
+import (
+	"image/color"
+	"fmt"
+)
 
+/*
+ *
+ */
 func selectTile() {
 	if flag, x, y := click(); flag == true {
 		for a, row := range board {
@@ -23,18 +29,21 @@ func selectTile() {
 func moveTile() {
 	if flag, x, y := click(); flag == true {
 		for a, row := range board {
-			for b, _ := range row {
+			for b := range row {
 				tile := &board[a][b]
 				if (tile.xleft <= x && x < tile.xright) && (tile.ytop <= y && y < tile.ybot) {
 					if selectedTile == tile {
 						selectedTile.color = previousColor
 						selectedTile = nil
 					} else {
-						if canMove(tile) {
+						if canMove(selectedTile,tile) {
 							tile.piece = selectedTile.piece
 							selectedTile.piece = Piece{}
 							selectedTile.color = previousColor
 							selectedTile = nil
+							if isCheck() {
+								fmt.Println("check")
+							}
 							changeTurn()
 						} else {
 
@@ -55,41 +64,62 @@ func changeTurn() {
 	}
 }
 
-func canMove(tile *Tile) bool {
-	var boo bool
-	switch selectedTile.piece.rank {
-	case 0:
-		boo = movePawn(tile)
-	case 1:
-		boo = moveKnight(tile)
-	case 2:
-		boo = moveBishop(tile)
-	case 3:
-		boo = moveRook(tile)
-	case 4:
-		boo = moveQueen(tile)
-	case 5:
-		boo = moveKing(tile)
+func isCheck() bool {
+	var x, y int
+	for a, row := range board {
+		for b, tile := range row {
+			if tile.piece.rank == 5 && tile.piece.color != playersTurn {
+				x, y = b, a
+				break
+			}
+		}
+	}
+	for _, row := range board {
+		for _, tile := range row {
+			if tile.piece != (Piece{}) && tile.piece.color == playersTurn {
+				if canMove(&tile, &board[x][y]) {
+					return true
+				}
+			}
+		}
+	}
+	return false
+}
 
+func canMove(tileFrom *Tile, tileTo *Tile) bool {
+	var boo bool
+	switch tileFrom.piece.rank {
+	case 0:
+		boo = movePawn(tileFrom, tileTo)
+	case 1:
+		boo = moveKnight(tileFrom, tileTo)
+	case 2:
+		boo = moveBishop(tileFrom, tileTo)
+	case 3:
+		boo = moveRook(tileFrom, tileTo)
+	case 4:
+		boo = moveQueen(tileFrom, tileTo)
+	case 5:
+		boo = moveKing(tileFrom, tileTo)
 	}
 	return boo
 }
 
-func movePawn(tile *Tile) bool {
-	xold, yold := selectedTile.b, selectedTile.a
-	xnew, ynew := tile.b, tile.a
-	c := selectedTile.piece.color
+func movePawn(tileFrom *Tile, tileTo *Tile) bool {
+	xold, yold := tileFrom.b, tileFrom.a
+	xnew, ynew := tileTo.b, tileTo.a
+	c := tileFrom.piece.color
 	switch c{
 	case 0:
-		if xnew == xold && ynew == yold-1 && tile.piece == (Piece{}) {
+		if xnew == xold && ynew == yold-1 && tileTo.piece == (Piece{}) {
 			return true
-		}else if xnew == xold && ynew == yold-2 && tile.piece == (Piece{}) && board[ynew+1][xold].piece == (Piece{}) && yold == 6 {
+		} else if xnew == xold && ynew == yold-2 && tileTo.piece == (Piece{}) && board[ynew+1][xold].piece == (Piece{}) && yold == 6 {
 			return true
 		}
 	case 1:
-	    if xnew == xold && ynew == yold+1 && tile.piece == (Piece{}) {
+	    if xnew == xold && ynew == yold+1 && tileTo.piece == (Piece{}) {
 			return true
-		} else if xnew == xold && ynew == yold+2 && tile.piece == (Piece{}) && board[ynew-1][xold].piece == (Piece{}) && yold == 1 {
+		} else if xnew == xold && ynew == yold+2 && tileTo.piece == (Piece{}) && board[ynew-1][xold].piece == (Piece{}) && yold == 1 {
 			return true
 		}
 
@@ -97,22 +127,22 @@ func movePawn(tile *Tile) bool {
 	return false
 }
 
-func moveKnight(tile *Tile) bool {
-	return true
+func moveKnight(tileFrom *Tile, tileTo *Tile) bool {
+	return false
 }
 
-func moveBishop(tile *Tile) bool {
-	return true
+func moveBishop(tileFrom *Tile, tileTo *Tile) bool {
+	return false
 }
 
-func moveRook(tile *Tile) bool {
-	return true
+func moveRook(tileFrom *Tile, tileTo *Tile) bool {
+	return false
 }
 
-func moveQueen(tile *Tile) bool {
-	return true
+func moveQueen(tileFrom *Tile, tileTo *Tile) bool {
+	return false
 }
 
-func moveKing(tile *Tile) bool {
-	return true
+func moveKing(tileFrom *Tile, tileTo *Tile) bool {
+	return false
 }
