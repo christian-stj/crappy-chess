@@ -249,11 +249,11 @@ func moveKing(tileFrom *Tile, tileTo *Tile) bool {
 	if tileTo.piece.color == playersTurn && tileTo.piece != (Piece{}) {
 		return false
 	}
-	x := math.Abs(float64(xold-xnew))
-	y := math.Abs(float64(yold-ynew))
-	if(x == 1 || x==0)&&(y==1 || y==0){
+	x := math.Abs(float64(xold - xnew))
+	y := math.Abs(float64(yold - ynew))
+	if (x == 1 || x == 0) && (y == 1 || y == 0) {
 		return true
 	}
-	
+
 	return false
 }
