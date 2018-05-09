@@ -86,6 +86,9 @@ func isCheck() bool {
 	return false
 }
 
+
+//Checks if the selected piece is allowed to move to the new tile that you click on.
+//returns true/false
 func canMove(tileFrom *Tile, tileTo *Tile) bool {
 	var boo bool
 	switch tileFrom.piece.rank {
@@ -134,6 +137,7 @@ func movePawn(tileFrom *Tile, tileTo *Tile) bool {
 	}
 	return false
 }
+
 
 func moveKnight(tileFrom *Tile, tileTo *Tile) bool {
 
