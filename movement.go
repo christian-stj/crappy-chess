@@ -229,6 +229,9 @@ func moveRook(tileFrom *Tile, tileTo *Tile) bool {
 }
 
 func moveQueen(tileFrom *Tile, tileTo *Tile) bool {
+	if moveRook(tileFrom, tileTo) || moveBishop(tileFrom, tileTo) {
+		return true
+	}
 	return false
 }
 
