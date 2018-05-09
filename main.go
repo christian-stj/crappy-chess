@@ -1,10 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/inpututil"
 	"image/color"
-	"fmt"
 )
 
 var board *[8][8]Tile

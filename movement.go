@@ -1,8 +1,8 @@
 package main
 
 import (
-	"image/color"
 	"fmt"
+	"image/color"
 )
 
 /*
@@ -36,7 +36,7 @@ func moveTile() {
 						selectedTile.color = previousColor
 						selectedTile = nil
 					} else {
-						if canMove(selectedTile,tile) {
+						if canMove(selectedTile, tile) {
 							tile.piece = selectedTile.piece
 							selectedTile.piece = Piece{}
 							selectedTile.color = previousColor
@@ -86,7 +86,6 @@ func isCheck() bool {
 	return false
 }
 
-
 //Checks if the selected piece is allowed to move to the new tile that you click on.
 //returns true/false
 func canMove(tileFrom *Tile, tileTo *Tile) bool {
@@ -112,25 +111,25 @@ func movePawn(tileFrom *Tile, tileTo *Tile) bool {
 	xold, yold := tileFrom.b, tileFrom.a
 	xnew, ynew := tileTo.b, tileTo.a
 	c := tileFrom.piece.color
-	switch c{
+	switch c {
 	case 0:
 		if xnew == xold && ynew == yold-1 && tileTo.piece == (Piece{}) {
 			return true
 		} else if xnew == xold && ynew == yold-2 && tileTo.piece == (Piece{}) && board[ynew+1][xold].piece == (Piece{}) && yold == 6 {
 			return true
-		}else if xnew == xold+1 && ynew==yold-1 && tileTo.piece != (Piece{}) && tileTo.piece.color != playersTurn{
+		} else if xnew == xold+1 && ynew == yold-1 && tileTo.piece != (Piece{}) && tileTo.piece.color != playersTurn {
 			return true
-		}else if xnew == xold-1 && ynew==yold-1 && tileTo.piece != (Piece{}) && tileTo.piece.color != playersTurn{
+		} else if xnew == xold-1 && ynew == yold-1 && tileTo.piece != (Piece{}) && tileTo.piece.color != playersTurn {
 			return true
 		}
 	case 1:
-	    if xnew == xold && ynew == yold+1 && tileTo.piece == (Piece{}) {
+		if xnew == xold && ynew == yold+1 && tileTo.piece == (Piece{}) {
 			return true
 		} else if xnew == xold && ynew == yold+2 && tileTo.piece == (Piece{}) && board[ynew-1][xold].piece == (Piece{}) && yold == 1 {
 			return true
-		}else if xnew == xold+1 && ynew==yold+1 && tileTo.piece != (Piece{}) && tileTo.piece.color != playersTurn{
+		} else if xnew == xold+1 && ynew == yold+1 && tileTo.piece != (Piece{}) && tileTo.piece.color != playersTurn {
 			return true
-		}else if xnew == xold-1 && ynew==yold+1 && tileTo.piece != (Piece{}) && tileTo.piece.color != playersTurn{
+		} else if xnew == xold-1 && ynew == yold+1 && tileTo.piece != (Piece{}) && tileTo.piece.color != playersTurn {
 			return true
 		}
 
@@ -138,15 +137,14 @@ func movePawn(tileFrom *Tile, tileTo *Tile) bool {
 	return false
 }
 
-
 func moveKnight(tileFrom *Tile, tileTo *Tile) bool {
 
 	xold, yold := tileFrom.b, tileFrom.a
 	xnew, ynew := tileTo.b, tileTo.a
 
-	if (xnew == xold-1 || xnew == xold+1) && (ynew == yold+2 || ynew == yold -2) && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
+	if (xnew == xold-1 || xnew == xold+1) && (ynew == yold+2 || ynew == yold-2) && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn) {
 		return true
-	}else if (xnew == xold+2 || xnew == xold-2) && (ynew == yold-1 || ynew == yold+1) && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
+	} else if (xnew == xold+2 || xnew == xold-2) && (ynew == yold-1 || ynew == yold+1) && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn) {
 		return true
 	}
 	return false
@@ -158,30 +156,30 @@ func moveBishop(tileFrom *Tile, tileTo *Tile) bool {
 	if tileTo.piece.color == playersTurn && tileTo.piece != (Piece{}) {
 		return false
 	}
-	for i:=1; i < 8; i++ {
+	for i := 1; i < 8; i++ {
 		switch {
-		case xnew == xold + i &&  ynew == yold + i:
+		case xnew == xold+i && ynew == yold+i:
 			for j := 1; j < i; j++ {
 				if board[yold+j][xold+j].piece != (Piece{}) {
 					return false
 				}
 			}
 			return true
-		case xnew == xold - i && ynew == yold - i:
+		case xnew == xold-i && ynew == yold-i:
 			for j := 1; j < i; j++ {
 				if board[yold-j][xold-j].piece != (Piece{}) {
 					return false
 				}
 			}
 			return true
-		case xnew == xold + i && ynew == yold - i:
+		case xnew == xold+i && ynew == yold-i:
 			for j := 1; j < i; j++ {
 				if board[yold-j][xold+j].piece != (Piece{}) {
 					return false
 				}
 			}
 			return true
-		case xnew == xold - i && ynew == yold + i:
+		case xnew == xold-i && ynew == yold+i:
 			for j := 1; j < i; j++ {
 				if board[yold+j][xold-j].piece != (Piece{}) {
 					return false
@@ -197,29 +195,29 @@ func moveRook(tileFrom *Tile, tileTo *Tile) bool {
 	xold, yold := tileFrom.b, tileFrom.a
 	xnew, ynew := tileTo.b, tileTo.a
 
-	if xold == xnew && ynew > yold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
-		for i := yold+1; i < ynew; i++ {
+	if xold == xnew && ynew > yold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn) {
+		for i := yold + 1; i < ynew; i++ {
 			if board[i][xnew].piece != (Piece{}) {
 				return false
 			}
 		}
 		return true
-	}else if xold == xnew && ynew < yold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
-		for i := yold-1; i > ynew; i-- {
+	} else if xold == xnew && ynew < yold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn) {
+		for i := yold - 1; i > ynew; i-- {
 			if board[i][xnew].piece != (Piece{}) {
 				return false
 			}
 		}
 		return true
-	}else if yold == ynew && xnew > xold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
-		for i := xold+1; i < xnew; i++ {
+	} else if yold == ynew && xnew > xold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn) {
+		for i := xold + 1; i < xnew; i++ {
 			if board[ynew][i].piece != (Piece{}) {
 				return false
 			}
 		}
 		return true
-	}else if yold == ynew && xnew < xold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
-		for i := xold-1; i > xnew; i-- {
+	} else if yold == ynew && xnew < xold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn) {
+		for i := xold - 1; i > xnew; i-- {
 			if board[ynew][i].piece != (Piece{}) {
 				return false
 			}
