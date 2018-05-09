@@ -233,5 +233,11 @@ func moveQueen(tileFrom *Tile, tileTo *Tile) bool {
 }
 
 func moveKing(tileFrom *Tile, tileTo *Tile) bool {
+	xold, yold := tileFrom.b, tileFrom.a
+	xnew, ynew := tileTo.b, tileTo.a
+	if tileTo.piece.color == playersTurn && tileTo.piece != (Piece{}) {
+		return false
+	}
+	
 	return false
 }
