@@ -115,11 +115,19 @@ func movePawn(tileFrom *Tile, tileTo *Tile) bool {
 			return true
 		} else if xnew == xold && ynew == yold-2 && tileTo.piece == (Piece{}) && board[ynew+1][xold].piece == (Piece{}) && yold == 6 {
 			return true
+		}else if xnew == xold+1 && ynew==yold-1 && tile.piece != (Piece{}){
+			return true
+		}else if xnew == xold-1 && ynew==yold-1 && tile.piece != (Piece{}){
+			return true
 		}
 	case 1:
 	    if xnew == xold && ynew == yold+1 && tileTo.piece == (Piece{}) {
 			return true
 		} else if xnew == xold && ynew == yold+2 && tileTo.piece == (Piece{}) && board[ynew-1][xold].piece == (Piece{}) && yold == 1 {
+			return true
+		}else if xnew == xold+1 && ynew==yold+1 && tile.piece != (Piece{}){
+			return true
+		}else if xnew == xold-1 && ynew==yold+1 && tile.piece != (Piece{}){
 			return true
 		}
 
@@ -128,6 +136,15 @@ func movePawn(tileFrom *Tile, tileTo *Tile) bool {
 }
 
 func moveKnight(tileFrom *Tile, tileTo *Tile) bool {
+
+	xold, yold := tileFrom.b, tileFrom.a
+	xnew, ynew := tileTo.b, tileTo.a
+
+	if (xnew == xold-1 || xnew == xold+1) && (ynew == yold+2 || ynew == yold -2) && tileFrom.piece.color!=tileTo.piece.color{
+		return true
+	}else if (xnew == xold+2 || xnew == xold-2) && (ynew == yold-1 || ynew == yold+1) && tileFrom.piece.color!=tileTo.piece.color{
+		return true
+	}
 	return false
 }
 
