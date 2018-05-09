@@ -5,7 +5,6 @@ import (
 	"image/color"
 )
 
-
 // Creates the backend chess board
 func CreateBoard() *[8][8]Tile {
 	var board [8][8]Tile
