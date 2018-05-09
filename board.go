@@ -10,9 +10,9 @@ func CreateBoard() *[8][8]Tile {
 	i := 30
 	for a, row := range board {
 		for b, _ := range row {
-			xleft := 10 + i + i*(b-1)
+			xleft := 20 + i + i*(b-1)
 			xright := xleft + i
-			ytop := 10 + i + i*(a-1)
+			ytop := 20 + i + i*(a-1)
 			ybot := ytop + i
 			tile := CreateTile(xleft, xright, ytop, ybot)
 			tile.a = a
@@ -35,13 +35,13 @@ func UpdateBoard(screen *ebiten.Image, board *[8][8]Tile) {
 	for a, row := range board {
 		for b, tile := range row {
 			op := &ebiten.DrawImageOptions{}
-			op.GeoM.Translate(float64(10+i+i*(b-1)), float64(10+i+i*(a-1)))
+			op.GeoM.Translate(float64(20+i+i*(b-1)), float64(20+i+i*(a-1)))
 			img.Fill(tile.color)
 			screen.DrawImage(img, op)
 			if tile.piece != (Piece{}) {
 				opPiece := &ebiten.DrawImageOptions{}
 				opPiece.GeoM.Scale(0.75, 0.75)
-				opPiece.GeoM.Translate(float64(10+i+i*(b-1)), float64(10+i+i*(a-1)))
+				opPiece.GeoM.Translate(float64(20+i+i*(b-1)), float64(20+i+i*(a-1)))
 				screen.DrawImage(tile.piece.pieceIcon, opPiece)
 			}
 		}

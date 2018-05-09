@@ -10,7 +10,8 @@ import (
 var board *[8][8]Tile
 var selectedTile *Tile
 var previousColor color.Color
-var playersTurn int = 0
+var playersTurn = 0
+var check = false
 
 func update(screen *ebiten.Image) error {
 	if selectedTile == nil {
@@ -36,5 +37,5 @@ func main() {
 	board = CreateBoard()
 	StartingPiecePos(board)
 	fmt.Println(board[3][3].piece.color) //This is the problem
-	ebiten.Run(update, 260, 260, 2, "Chess")
+	ebiten.Run(update, 280, 280, 2, "Chess")
 }
