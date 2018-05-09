@@ -6,10 +6,8 @@ import (
 	"math"
 )
 
-/*
- *
- */
-func selectTile() {
+// Select a piece to move by clicking.
+func selectPiece() {
 	if flag, x, y := click(); flag == true {
 		for a, row := range board {
 			for b, _ := range row {
@@ -27,7 +25,8 @@ func selectTile() {
 	}
 }
 
-func moveTile() {
+// Moves a piece
+func movePiece() {
 	if flag, x, y := click(); flag == true {
 		for a, row := range board {
 			for b := range row {
@@ -57,6 +56,7 @@ func moveTile() {
 
 }
 
+// Switches turn between the players
 func changeTurn() {
 	if playersTurn == 0 {
 		playersTurn = 1
@@ -65,6 +65,7 @@ func changeTurn() {
 	}
 }
 
+// Checks if check
 func isCheck() bool {
 	var x, y int
 	for a, row := range board {
@@ -108,6 +109,7 @@ func canMove(tileFrom *Tile, tileTo *Tile) bool {
 	return boo
 }
 
+// Moves pawn
 func movePawn(tileFrom *Tile, tileTo *Tile) bool {
 	xold, yold := tileFrom.b, tileFrom.a
 	xnew, ynew := tileTo.b, tileTo.a
@@ -138,6 +140,7 @@ func movePawn(tileFrom *Tile, tileTo *Tile) bool {
 	return false
 }
 
+// Moves knight
 func moveKnight(tileFrom *Tile, tileTo *Tile) bool {
 
 	xold, yold := tileFrom.b, tileFrom.a
@@ -151,6 +154,7 @@ func moveKnight(tileFrom *Tile, tileTo *Tile) bool {
 	return false
 }
 
+// Moves bishop
 func moveBishop(tileFrom *Tile, tileTo *Tile) bool {
 	xold, yold := tileFrom.b, tileFrom.a
 	xnew, ynew := tileTo.b, tileTo.a
@@ -192,6 +196,7 @@ func moveBishop(tileFrom *Tile, tileTo *Tile) bool {
 	return false
 }
 
+// Moves rook
 func moveRook(tileFrom *Tile, tileTo *Tile) bool {
 	xold, yold := tileFrom.b, tileFrom.a
 	xnew, ynew := tileTo.b, tileTo.a
@@ -229,6 +234,7 @@ func moveRook(tileFrom *Tile, tileTo *Tile) bool {
 	return false
 }
 
+// Moves Queen
 func moveQueen(tileFrom *Tile, tileTo *Tile) bool {
 	if moveRook(tileFrom, tileTo) || moveBishop(tileFrom, tileTo) {
 		return true
@@ -236,6 +242,7 @@ func moveQueen(tileFrom *Tile, tileTo *Tile) bool {
 	return false
 }
 
+// Moves king
 func moveKing(tileFrom *Tile, tileTo *Tile) bool {
 	xold, yold := tileFrom.b, tileFrom.a
 	xnew, ynew := tileTo.b, tileTo.a

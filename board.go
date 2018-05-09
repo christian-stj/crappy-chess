@@ -5,6 +5,8 @@ import (
 	"image/color"
 )
 
+
+// Creates the backend chess board
 func CreateBoard() *[8][8]Tile {
 	var board [8][8]Tile
 	i := 30
@@ -28,6 +30,7 @@ func CreateBoard() *[8][8]Tile {
 	return &board
 }
 
+// Updates each screen with the board as it changes (i.e. pieces are moved)
 func UpdateBoard(screen *ebiten.Image, board *[8][8]Tile) {
 	i := 30
 	img, _ := ebiten.NewImage(i, i, 0)
@@ -48,6 +51,7 @@ func UpdateBoard(screen *ebiten.Image, board *[8][8]Tile) {
 	}
 }
 
+// Sets starting position for all pieces
 func StartingPiecePos(board *[8][8]Tile) {
 	// Draw the "black" pieces
 	board[0][0].piece = CreatePiece(1, 3)

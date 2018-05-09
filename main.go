@@ -13,17 +13,19 @@ var previousColor color.Color
 var playersTurn = 0
 var check = false
 
+// updates the screen
 func update(screen *ebiten.Image) error {
 	if selectedTile == nil {
-		selectTile()
+		selectPiece()
 	} else {
-		moveTile()
+		movePiece()
 	}
 	UpdateBoard(screen, board)
 
 	return nil
 }
 
+// reads click input
 func click() (bool, int, int) {
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 		x, y := ebiten.CursorPosition()
@@ -33,6 +35,7 @@ func click() (bool, int, int) {
 	}
 }
 
+// Main routine, runs game
 func main() {
 	board = CreateBoard()
 	StartingPiecePos(board)
