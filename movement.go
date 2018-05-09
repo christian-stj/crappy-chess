@@ -77,7 +77,7 @@ func isCheck() bool {
 	for _, row := range board {
 		for _, tile := range row {
 			if tile.piece != (Piece{}) && tile.piece.color == playersTurn {
-				if canMove(&tile, &board[x][y]) {
+				if canMove(&tile, &board[y][x]) {
 					return true
 				}
 			}
