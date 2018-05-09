@@ -4,6 +4,7 @@ import (
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/inpututil"
 	"image/color"
+	"fmt"
 )
 
 var board *[8][8]Tile
@@ -34,5 +35,6 @@ func click() (bool, int, int) {
 func main() {
 	board = CreateBoard()
 	StartingPiecePos(board)
+	fmt.Println(board[3][3].piece.color) //This is the problem
 	ebiten.Run(update, 260, 260, 2, "Chess")
 }
