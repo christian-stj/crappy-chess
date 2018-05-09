@@ -8,13 +8,13 @@ import (
 
 // color : 0 = white, 1 = black
 // rank : 0 = bonde, 1 = häst, 2 = löpare, 3 = torn, 4 = dam, 5 = kung
-
 type Piece struct {
 	pieceIcon *ebiten.Image
 	color     int
 	rank      int
 }
 
+//Creates a new Piece with the specified color and rank.
 func CreatePiece(color int, rank int) (p Piece) {
 	p.color = color
 	p.rank = rank

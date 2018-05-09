@@ -15,6 +15,7 @@ type Tile struct {
 	piece  Piece
 }
 
+//Creates a new tile with the specified coordinates.
 func CreateTile(xleft int, xright int, ytop int, ybot int) (t Tile) {
 	tile := Tile{}
 	tile.xleft = xleft
