@@ -194,6 +194,39 @@ func moveBishop(tileFrom *Tile, tileTo *Tile) bool {
 }
 
 func moveRook(tileFrom *Tile, tileTo *Tile) bool {
+	xold, yold := tileFrom.b, tileFrom.a
+	xnew, ynew := tileTo.b, tileTo.a
+
+	if xold == xnew && ynew > yold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
+		for i := yold+1; i < ynew; i++ {
+			if board[i][xnew].piece != (Piece{}) {
+				return false
+			}
+		}
+		return true
+	}else if xold == xnew && ynew < yold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
+		for i := yold-1; i > ynew; i-- {
+			if board[i][xnew].piece != (Piece{}) {
+				return false
+			}
+		}
+		return true
+	}else if yold == ynew && xnew > xold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
+		for i := xold+1; i < xnew; i++ {
+			if board[ynew][i].piece != (Piece{}) {
+				return false
+			}
+		}
+		return true
+	}else if yold == ynew && xnew < xold && (tileTo.piece == (Piece{}) || tileTo.piece.color != playersTurn){
+		for i := xold-1; i > xnew; i-- {
+			if board[ynew][i].piece != (Piece{}) {
+				return false
+			}
+		}
+		return true
+	}
+
 	return false
 }
 
