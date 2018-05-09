@@ -14,5 +14,5 @@ To run this code need to install golang and ebiten.
 - [Ebiten installation](https://github.com/hajimehoshi/ebiten/wiki/Installation)
 
 
-
-![](https://golang.org/doc/gopher/pkg.png)
+![Go](https://golang.org/doc/gopher/pkg.png)
+<img src="https://hajimehoshi.github.io/ebiten/images/logo.svg" alt="drawing" width="120" height="120"/>
