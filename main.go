@@ -2,11 +2,11 @@ package main
 
 import (
 	"github.com/hajimehoshi/ebiten"
+	"github.com/hajimehoshi/ebiten/ebitenutil"
 	"github.com/hajimehoshi/ebiten/inpututil"
 	"image/color"
-	"github.com/hajimehoshi/ebiten/ebitenutil"
-	"time"
 	"os"
+	"time"
 )
 
 var board *[8][8]Tile
