@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"image/color"
 	"math"
 )
@@ -41,9 +40,6 @@ func movePiece() {
 							selectedTile.piece = Piece{}
 							selectedTile.color = previousColor
 							selectedTile = nil
-							if isCheck() {
-								fmt.Println("check")
-							}
 							changeTurn()
 						} else {
 
@@ -65,29 +61,6 @@ func changeTurn() {
 	}
 }
 
-// Checks if check
-func isCheck() bool {
-	var x, y int
-	for a, row := range board {
-		for b, tile := range row {
-			if tile.piece.rank == 5 && tile.piece.color != playersTurn {
-				x, y = b, a
-				break
-			}
-		}
-	}
-	for _, row := range board {
-		for _, tile := range row {
-			if tile.piece != (Piece{}) && tile.piece.color == playersTurn {
-				if canMove(&tile, &board[y][x]) {
-					return true
-				}
-			}
-		}
-	}
-	return false
-}
-
 //Checks if the selected piece is allowed to move to the new tile that you click on.
 //returns true/false
 func canMove(tileFrom *Tile, tileTo *Tile) bool {
@@ -105,6 +78,11 @@ func canMove(tileFrom *Tile, tileTo *Tile) bool {
 		boo = moveQueen(tileFrom, tileTo)
 	case 5:
 		boo = moveKing(tileFrom, tileTo)
+	}
+	if boo {
+		if tileTo.piece.rank == 5 {
+			gameOver = true
+		}
 	}
 	return boo
 }

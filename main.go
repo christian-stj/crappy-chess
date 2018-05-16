@@ -4,13 +4,16 @@ import (
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/inpututil"
 	"image/color"
+	"github.com/hajimehoshi/ebiten/ebitenutil"
+	"time"
+	"os"
 )
 
 var board *[8][8]Tile
 var selectedTile *Tile
 var previousColor color.Color
 var playersTurn = 0
-var check = false
+var gameOver = false
 
 // updates the screen
 func update(screen *ebiten.Image) error {
@@ -18,6 +21,17 @@ func update(screen *ebiten.Image) error {
 		selectPiece()
 	} else {
 		movePiece()
+	}
+	if gameOver {
+		if playersTurn == 1 {
+			ebitenutil.DebugPrint(screen, " Game over, White won")
+		} else {
+			ebitenutil.DebugPrint(screen, " Game over, Black won")
+		}
+		go func() {
+			time.Sleep(5 * time.Second)
+			os.Exit(1)
+		}()
 	}
 	UpdateBoard(screen, board)
 
