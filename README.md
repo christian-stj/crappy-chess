@@ -9,11 +9,9 @@ All the correct rules for moving the pieces are implemented.
 Graphics are simple and easy. Two players play together on one computer. You control the game by clicking a piece and then clicking the tile you wish to move that piece to.
 
 ##### Installation
-To run this code need to install golang and ebiten.
+To run this code need to install golang.
 
 - [Golang installation](https://golang.org/doc/install)
-
-- [Ebiten installation](https://github.com/hajimehoshi/ebiten/wiki/Installation)
 
 After that you can clone the repository and navigate to the folder with the terminal.
 Once you are in the folder just type "go run *.go" and the game starts.
