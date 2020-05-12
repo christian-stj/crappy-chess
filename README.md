@@ -18,6 +18,6 @@ Once you are in the folder just type "go run *.go" and the game starts.
 
 
 ![Go](https://golang.org/doc/gopher/pkg.png)
-<img src="https://hajimehoshi.github.io/ebiten/images/logo.svg" alt="drawing" width="120" height="120"/>
+<img src="https://ebiten.org/images/share.png" alt="drawing" width="120" height="120"/>
 
 Ebiten is licensed under Apache license version 2.0. See which can be found [here](https://www.apache.org/licenses/LICENSE-2.0).
