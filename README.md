@@ -1,6 +1,8 @@
 # Projinda
 #### Projektuppgift i datalogi
 
+![Chess](https://repository-images.githubusercontent.com/261740796/afb9ce00-9447-11ea-9426-16995fb7f23c)
+
 This is a chess game developed in Go using the package Ebiten.
 
 It's a simple chess game with all the simple rules. 
